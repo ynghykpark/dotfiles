@@ -1,0 +1,69 @@
+set trash
+set followlinks
+set number relativenumber
+set vicmd=nvim
+set syscalls
+set history=100
+set fastrun
+set sortnumbers relativenumber
+set undolevels=100
+set norunexec
+
+set wildmenu
+set wildstyle=popup
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set scrolloff=4
+set slowfs=curlftpfs
+
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+fileviewer *.py highlight -O xterm256 -s zenburn --syntax py %c
+fileviewer *.c,*h highlight -O xterm256 -s zenburn --syntax c %c
+fileviewer *.cpp highlight -O xterm256 -s zenburn --syntax cpp %c
+fileviewer *.sh highlight -O xterm256 -s zenburn --syntax bash %c
+
+fileviewer *.vim highlight -O xterm256 -s zenburn --syntax vim %c
+fileviewer *.html highlight -O xterm256 -s zenburn --syntax html %c
+
+fileviewer *.cfg highlight -O xterm256 -s zenburn --syntax conf %c
+fileviewer *.md highlight -O xterm256 -s zenburn --syntax md %c
+fileviewer *.json highlight -O xterm256 -s zenburn --syntax json %c
+fileviewer *.yaml highlight -O xterm256 -s zenburn --syntax yaml %c
+fileviewer Dockerfile highlight -O xterm256 -s zenburn --syntax docker %c
+
+fileviewer */ tree %c -L 1 -C
+
+filetype *.zip unzip %f
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -xf %f
+filetype *.bz2 bzip2 -d %f
+filetype *.gz gunzip %f
+
+highlight clear
+highlight Win             cterm=none     ctermfg=white        ctermbg=none
+highlight TopLine         cterm=none     ctermfg=none         ctermbg=none
+highlight TopLineSel      cterm=none     ctermfg=none         ctermbg=none
+highlight StatusLine      cterm=none     ctermfg=none         ctermbg=none
+highlight Border          cterm=none     ctermfg=none         ctermbg=none
+highlight Selected        cterm=none     ctermfg=black        ctermbg=white
+highlight CurrLine        cterm=none     ctermfg=white        ctermbg=black
+highlight WildMenu        cterm=reverse  ctermfg=none         ctermbg=none
+highlight CmdLine         cterm=none     ctermfg=none         ctermbg=none
+highlight ErrorMsg        cterm=none     ctermfg=none         ctermbg=none
+highlight Directory       cterm=bold     ctermfg=blue         ctermbg=none
+highlight Executable      cterm=none     ctermfg=yellow       ctermbg=none
+highlight Link            cterm=none     ctermfg=142          ctermbg=none
+highlight BrokenLink      cterm=none     ctermfg=174          ctermbg=none
+highlight Device          cterm=none     ctermfg=228          ctermbg=none
+highlight Fifo            cterm=none     ctermfg=109          ctermbg=none
+highlight Socket          cterm=none     ctermfg=110          ctermbg=none

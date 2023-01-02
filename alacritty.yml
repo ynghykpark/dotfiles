@@ -1,0 +1,121 @@
+window:
+
+  dimensions:
+    columns: 0
+    lines: 0
+
+  position:
+    x: 0
+    y: 0
+
+  padding:
+    x: 0
+    y: 0
+
+  dynamic_padding: true
+
+  decorations: buttonless
+
+  startup_mode: Windowed
+
+  opacity: 0.75
+
+scrolling:
+
+  history: 1000
+  multiplier: 3
+
+font:
+
+  normal:
+    family: Iosevka Nerd Font
+    style: Light
+
+  bold:
+    family: Iosevka Nerd Font
+    style: Medium
+
+  italic:
+    family: Iosevka Nerd Font
+    style: "Light Italic"
+
+  size: 15.0
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  buitin_box_drawing: true
+
+draw_bold_text_with_bright_colors: false
+
+custom_cursor_colors: true
+
+colors:
+
+  primary:
+    background: '0x121212'
+    foreground: '0xd8d8d8'
+
+  cursor:
+    text: '0x4a4a4a'
+    cursor: '0xd8d8d8'
+
+  normal:
+    black:   '0x606060'
+    red:     '0xdf9a98'
+    green:   '0x719672'
+    yellow:  '0xe0bb71'
+    blue:    '0x96bbdc'
+    magenta: '0xdfbdbc'
+    cyan:    '0x97bcbc'
+    white:   '0xd8d8d8'
+
+  bright:
+    black:   '0x757575'
+    red:     '0xe07798'
+    green:   '0x97bb98'
+    yellow:  '0xffdd98'
+    blue:    '0xbadcfb'
+    magenta: '0xffbebc'
+    cyan:    '0x96ddde'
+    white:   '0xffffff'
+
+bell:
+  animation: EaseOutExpo
+  color: '0xffffff'
+  duration: 100
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  save_to_clipboard: false
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+live_config_reload: true
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: OFF
+  print_events: false
+  ref_test: false
+
+shell:
+  program: /usr/local/bin/bash
+  args:
+    - --login
