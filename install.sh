@@ -220,8 +220,6 @@ install_neovim_plugin() {
         --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-        nvim +PlugInstall +qall!
-
     fi
 
 }
@@ -486,6 +484,8 @@ ubuntu() {
     install_package "Node.js" "nodejs"
 
     execute "install_neovim_plugin" "neovim plugin"
+
+    nvim +PlugInstall +qall!
 
     execute "install_copilot" "copilot"
 
