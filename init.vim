@@ -238,3 +238,5 @@ if executable('clangd-9')
         \ 'whitelist': ['cpp', 'h', 'hpp'],
         \ })
 endif
+
+let g:copilot_filetypes = {'*': v:true}

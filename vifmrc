@@ -32,16 +32,13 @@ fileviewer *.py highlight -O xterm256 -s zenburn --syntax py %c
 fileviewer *.c,*h highlight -O xterm256 -s zenburn --syntax c %c
 fileviewer *.cpp highlight -O xterm256 -s zenburn --syntax cpp %c
 fileviewer *.sh highlight -O xterm256 -s zenburn --syntax bash %c
-
 fileviewer *.vim highlight -O xterm256 -s zenburn --syntax vim %c
 fileviewer *.html highlight -O xterm256 -s zenburn --syntax html %c
-
 fileviewer *.cfg highlight -O xterm256 -s zenburn --syntax conf %c
 fileviewer *.md highlight -O xterm256 -s zenburn --syntax md %c
 fileviewer *.json highlight -O xterm256 -s zenburn --syntax json %c
 fileviewer *.yaml highlight -O xterm256 -s zenburn --syntax yaml %c
 fileviewer Dockerfile highlight -O xterm256 -s zenburn --syntax docker %c
-
 fileviewer */ tree %c -L 1 -C
 
 filetype *.zip unzip %f
