@@ -470,8 +470,6 @@ ubuntu() {
 
     install_package "Vifm" "vifm"
 
-    install_package "clangd-9" "clangd-9"
-
     install_package "DNS utils" "dnsutils"
 
     add_ppa "neovim-ppa/stable"
@@ -482,15 +480,10 @@ ubuntu() {
 
     execute "sudo apt-get upgrade -qqy" "Upgrading packages"
 
-    execute "curl -sfL \
-             https://deb.nodesource.com/setup_16.x | sudo -E bash - &> /dev/null" \
-            "Installing node"
+    execute "curl -sfL https://deb.nodesource.com/setup_16.x | sudo -E bash - &> /dev/null" \
+            "Add NodeSource repository"
 
-    execute "sudo npm install -g typescript" "Installing typescript"
-
-    execute "curl -sS https://starship.rs/install.sh | awk '{print $1"yes"}' | sudo sh" "starship"
-
-    change_default_bash
+    install_package "Node.js" "nodejs"
 
     execute "install_neovim_plugin" "neovim plugin"
 
