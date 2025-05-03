@@ -8,7 +8,12 @@ symlink_dotfiles() {
     create_symlinks "$(pwd)/neovim/init.lua" "$HOME/.config/nvim/init.lua"
     create_symlinks "$(pwd)/vifm/vifmrc" "$HOME/.config/vifm/vifmrc"
     create_symlinks "$(pwd)/btop/gruvbox.theme" "$HOME/.config/btop/themes/gruvbox.theme"
-    # create_symlinks "$(pwd)/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+
+    for script in "$(pwd)/scripts/"*; do
+        # add executable permission to the script
+        chmod +x "$script"
+        create_symlinks "$script" "$HOME/.local/bin/$(basename "$script")"
+    done
 }
 
 install_basic_apps() {
@@ -87,7 +92,7 @@ install_gh_cli() {
     sudo mkdir -p -m 755 /etc/apt/keyrings
     out=$(mktemp)
     wget -nv -O "$out" https://cli.github.com/packages/githubcli-archive-keyring.gpg
-    sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null <"$out"
+    cat "$out" | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null
     sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
 
     # Add the repository to apt sources
