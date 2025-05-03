@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# use python interpreter for user
+if [ -d "$HOME/.venv" ]; then
+    source "$HOME/.venv/bin/activate"
+else
+    echo "No python environment found"
+fi
+
+# simple prompt
+export PS1="\[\e[1;2m\] ➜  \[\e[0m\] "
+
+# alias
+alias ll='ls -alh'
+alias path='echo -e ${PATH//:/\\n}'
+alias vim='NVIM_LITEWEIGHT=1 nvim'
+alias vim-full='NVIM_LITEWEIGHT=0 nvim'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ssh-detach='ssh -fNT'
+alias gg='git log --graph --pretty=custom'
+alias gl='git log --pretty=custom'
+alias dra='docker ps -aq | xargs -r docker rm -f'
+alias dpa='docker images -aq | xargs -r docker rmi -f'
+
+# environment variables
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export EDITOR=nvim
+export TERM="xterm-256color"
+export PATH="$HOME/.local/bin:$PATH"
+export COLORTERM=truecolor
+SHELL="$(which bash)" && export SHELL
