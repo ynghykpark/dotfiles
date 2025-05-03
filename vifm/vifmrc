@@ -9,13 +9,24 @@ filextype {*.3g2,*.3gp,*.avi,*.flv,*.m2ts,*.m4v,*.mj2,*.mkv,*.mov,*.mp4,*.mpeg,*
         \ mpv %f 2>/dev/null &,
 
 filextype {*.zip}
-        \ xdg-open %f &,
+        \ unzip %f,
+
+filextype {*.tar,*.tar.gz,*.tgz,*.tar.bz2,*.tbz2,*.tar.xz,*.txz}
+        \ tar -xf %f
+
+filextype {*.gz,*.bz2,*.xz}
+        \ gzip -dc %f | less,
+        \ bzip2 -dc %f | less,
+        \ xz -dc %f | less
+
+filextype {*.7z,*.rar}
+        \ 7z x %f
 
 filextype {*.pdf,*.epub,*.djvu}
         \ zathura %f &,
 
-nnoremap <C-e> :!xdg-open %d &<CR>
-nnoremap <C-y> :!echo -n %d/%c | xclip -selection clipboard<CR>
+nnoremap <C-e> :!open %d &<CR>
+command! zip zip -r %a.zip %f
 
 highlight clear
 highlight Win             cterm=none     ctermfg=white        ctermbg=none
