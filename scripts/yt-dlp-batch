@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+import argparse
+import multiprocessing as mp
+
+try:
+    import yt_dlp
+except ImportError:
+    print("Please install yt-dlp with 'pip3 install yt-dlp'.")
+    exit(1)
+
+
+def _download(queue: mp.Queue) -> None:
+    yt_options = {
+        "format": "best",
+        "outtmpl": "%(title)s.%(ext)s",
+        "quiet": True,
+        "no_warnings": True,
+    }
+    with yt_dlp.YoutubeDL(yt_options) as ydl:
+        while not queue.empty():
+            url = queue.get()
+            ydl.download(url)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Download youtube videos with yt-dlp in parallel."
+    )
+    parser.add_argument(
+        "url_file",
+        type=str,
+        help="URLs of the youtube videos to download.",
+    )
+    args = parser.parse_args()
+
+    with open(args.url_file, "r") as f:
+        urls = [line.strip() for line in f if line.strip()]
+
+    queue = mp.Queue()
+    for url in urls:
+        queue.put(url)
+
+    num_processes = min(mp.cpu_count(), len(urls))
+    processes = [
+        mp.Process(target=_download, args=(queue,)) for _ in range(num_processes)
+    ]
+    for p in processes:
+        p.start()
+    for p in processes:
+        p.join()
+
+
+if __name__ == "__main__":
+    main()

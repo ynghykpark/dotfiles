@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+function usage {
+    echo "Usage: $0 <remote_host> <remote_dir> <local_dir>"
+    exit 1
+}
+
+function pull_directory {
+    local remote_host=$1
+    local remote_dir=$2
+    local local_dir=$3
+
+    if [ ! -d "$local_dir" ]; then
+        mkdir -p "$local_dir"
+    fi
+
+    local remote_dirname
+    remote_dirname=$(ssh "$remote_host" "basename \"$remote_dir\"")
+    local zip_file="${remote_dirname}.zip"
+
+    if ! ssh "$remote_host" "cd \$(dirname \"$remote_dir\") && zip -r \"$zip_file\" \$(basename \"$remote_dir\")"; then
+        echo "Error: Failed to zip remote directory"
+        exit 1
+    fi
+
+    remote_zip_path=$(dirname "$remote_dir")/"$zip_file"
+    if ! scp "$remote_host:$remote_zip_path" "$local_dir"; then
+        echo "Error: Failed to download zip file from remote server"
+        ssh "$remote_host" "rm \"$remote_zip_path\""
+        exit 1
+    fi
+
+    ssh "$remote_host" "rm \"$remote_zip_path\""
+
+    if ! (cd "$local_dir" && unzip -o "$zip_file"); then
+        echo "Error: Failed to unzip file locally"
+        rm "$local_dir/$zip_file"
+        exit 1
+    fi
+
+    # Remove the local zip file
+    rm "$local_dir/$zip_file"
+    echo "Download complete!"
+}
+
+# Check the number of arguments
+if [ $# -ne 3 ]; then
+    usage
+fi
+
+pull_directory "$1" "$2" "$3"

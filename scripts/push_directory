@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+function usage {
+    echo "Usage: $0 <remote_host> <remote_dir> <local_dir>"
+    exit 1
+}
+
+function push_directory {
+    local remote_host=$1
+    local remote_dir=$2
+    local local_dir=$3
+
+    if [ ! -d "$local_dir" ]; then
+        echo "Error: $local_dir does not exist"
+        exit 1
+    fi
+
+    local zip_file
+    zip_file="$(basename "$local_dir").zip"
+    if ! zip -r "$zip_file" "$local_dir"; then
+        echo "Error: Failed to create zip file"
+        exit 1
+    fi
+
+    if ! scp "$zip_file" "$remote_host:$remote_dir"; then
+        echo "Error: Failed to copy zip file to remote server"
+        rm "$zip_file"
+        exit 1
+    fi
+
+    remote_zip_path="${remote_dir}/${zip_file}"
+    if ! ssh "$remote_host" "unzip -o \"$remote_zip_path\" -d \"$remote_dir\" && rm \"$remote_zip_path\""; then
+        echo "Error: Failed to unzip file on remote server"
+        rm "$zip_file"
+        exit 1
+    fi
+
+    rm "$zip_file"
+}
+
+# Check the number of arguments
+if [ $# -ne 3 ]; then
+    usage
+fi
+
+push_directory "$1" "$2" "$3"
