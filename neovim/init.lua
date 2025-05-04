@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
-		keymap.set("n", "<leader>ip", function()
+		vim.keymap.set("n", "<leader>ip", function()
 			local trace = "import pdb; pdb.set_trace()"
 			local indent = vim.fn.indent(vim.fn.line("."))
 			local indented_trace = string.rep(" ", indent) .. trace
@@ -573,7 +573,13 @@ require("lazy").setup({
 				"ruff",
 				"jq",
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			require("mason-tool-installer").setup({
+				ensure_installed = ensure_installed,
+				auto_update = false,
+				run_on_start = true,
+				start_delay = 3000, -- 3 second delay
+				max_concurrent_installers = 4,
+			})
 			require("mason-lspconfig").setup({
 				ensure_installed = {},
 				automatic_installation = false,
