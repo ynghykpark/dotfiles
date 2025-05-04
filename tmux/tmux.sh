@@ -136,6 +136,8 @@ main() {
     tmux bind D command-prompt -p "New session:" "new-session -s '%%'"
     tmux bind m command-prompt -p "Move pane to session:" "break-pane -t '%%:'"
 
+    # remove delay when sending commands (default is 500 milliseconds)
+    tmux set-option -g escape-time 0
 }
 
 main
