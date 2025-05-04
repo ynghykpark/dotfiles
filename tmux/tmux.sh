@@ -135,6 +135,7 @@ main() {
     # session management
     tmux bind D command-prompt -p "New session:" "new-session -s '%%'"
     tmux bind m command-prompt -p "Move pane to session:" "break-pane -t '%%:'"
+    tmux bind g new-window -c "#{pane_current_path}" "lazygit"
 
     # remove delay when sending commands (default is 500 milliseconds)
     tmux set-option -g escape-time 0
