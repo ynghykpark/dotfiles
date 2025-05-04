@@ -9,6 +9,7 @@ symlink_dotfiles() {
     create_symlinks "$(pwd)/vifm/vifmrc" "$HOME/.config/vifm/vifmrc"
     create_symlinks "$(pwd)/btop/gruvbox.theme" "$HOME/.config/btop/themes/gruvbox.theme"
     create_symlinks "$(pwd)/starship/starship.toml" "$HOME/.config/starship.toml"
+    create_symlinks "$(pwd)/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
 
     for script in "$(pwd)/scripts/"*; do
         # add executable permission to the script

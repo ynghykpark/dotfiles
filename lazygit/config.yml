@@ -1,0 +1,4 @@
+keybinding:
+  commits:
+    moveDownCommit: J
+    moveUpCommit: K
