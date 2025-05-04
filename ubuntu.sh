@@ -2,7 +2,7 @@
 
 symlink_dotfiles() {
     create_symlinks "$(pwd)/bash/bashrc" "$HOME/.bashrc"
-    create_symlinks "$(pwd)/git/gitconfig" "$HOME/.gitconfig"
+    create_symlinks "$(pwd)/git/.gitconfig" "$HOME/.gitconfig"
     create_symlinks "$(pwd)/tmux/tmux.conf" "$HOME/.tmux.conf"
     create_symlinks "$(pwd)/tmux/tmux.sh" "$HOME/.tmux.sh"
     create_symlinks "$(pwd)/neovim/init.lua" "$HOME/.config/nvim/init.lua"

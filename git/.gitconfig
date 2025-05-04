@@ -1,6 +1,7 @@
 [init]
     defaultBranch = master
 [user]
+    useConfigOnly = true
     email = ynghykpark@gmail.com
     name = yonghyukpark
 [pretty]
@@ -9,5 +10,8 @@
     lg = log --graph --oneline --decorate --all --pretty=custom
     amend = commit --amend --no-edit
     unstage = reset HEAD --
+    start = "!f() { git checkout -b $(date +%y%m%d)-${1:-work}; }; f"
+    fix = commit --fixup=HEAD
+    tidy = rebase -i --autosquash
 [commit]
     verbose = true
