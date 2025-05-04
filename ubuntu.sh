@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 symlink_dotfiles() {
+
     create_symlinks "$(pwd)/bash/bashrc" "$HOME/.bashrc"
     create_symlinks "$(pwd)/git/.gitconfig" "$HOME/.gitconfig"
     create_symlinks "$(pwd)/tmux/tmux.conf" "$HOME/.tmux.conf"
