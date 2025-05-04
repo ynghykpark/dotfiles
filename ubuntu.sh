@@ -8,6 +8,7 @@ symlink_dotfiles() {
     create_symlinks "$(pwd)/neovim/init.lua" "$HOME/.config/nvim/init.lua"
     create_symlinks "$(pwd)/vifm/vifmrc" "$HOME/.config/vifm/vifmrc"
     create_symlinks "$(pwd)/btop/gruvbox.theme" "$HOME/.config/btop/themes/gruvbox.theme"
+    create_symlinks "$(pwd)/starship/starship.toml" "$HOME/.config/starship.toml"
 
     for script in "$(pwd)/scripts/"*; do
         # add executable permission to the script
@@ -101,6 +102,10 @@ install_gh_cli() {
         sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
 }
 
+install_starship() {
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+}
+
 setup_ubuntu() {
 
     execute symlink_dotfiles "symlink dotfiles"
@@ -111,5 +116,6 @@ setup_ubuntu() {
     execute install_user_python "Install python"
     execute install_lazygit "install lazygit"
     execute install_gh_cli "install github cli"
+    execute install_starship "install starship"
 
 }

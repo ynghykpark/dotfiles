@@ -7,8 +7,8 @@ else
     echo "No python environment found"
 fi
 
-# simple prompt
-export PS1="\[\e[1;2m\] ➜  \[\e[0m\] "
+# prompt by starship
+eval "$(starship init bash)"
 
 # alias
 alias ll='ls -alh'
