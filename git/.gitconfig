@@ -11,3 +11,5 @@
     work = "!f() { git checkout -b $(date +%y%m%d)-$(openssl rand -hex 2); }; f"
 [commit]
     verbose = true
+[include]
+    path = ~/.gitconfig.local
