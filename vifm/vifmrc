@@ -1,5 +1,6 @@
 set vicmd='NVIM_LIGHTWEIGHT=1 nvim'
 set trash
+set syscalls
 set ignorecase
 set smartcase
 set nohlsearch
