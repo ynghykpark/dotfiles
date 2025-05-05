@@ -27,6 +27,7 @@ filextype {*.pdf,*.epub,*.djvu}
         \ zathura %f &,
 
 nnoremap <C-e> :!open %d &<CR>
+nnoremap <C-t> :tabnew %d<CR>
 
 highlight clear
 highlight Win             cterm=none     ctermfg=white        ctermbg=none
