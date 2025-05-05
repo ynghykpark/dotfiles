@@ -27,7 +27,6 @@ filextype {*.pdf,*.epub,*.djvu}
         \ zathura %f &,
 
 nnoremap <C-e> :!open %d &<CR>
-command! zip zip -r %a.zip %f
 
 highlight clear
 highlight Win             cterm=none     ctermfg=white        ctermbg=none
