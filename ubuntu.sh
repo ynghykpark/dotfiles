@@ -39,7 +39,15 @@ install_basic_apps() {
         build-essential \
         lowdown \
         gcc-11 \
-        g++-11
+        g++-11 \
+        bzip2 \
+        xz-utils \
+        p7zip-full \
+        tree \
+        bat \
+        imagemagick \
+        poppler-utils \
+        mediainfo
 }
 
 install_neovim() {
