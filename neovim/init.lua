@@ -417,7 +417,7 @@ require("lazy").setup({
 				lualine_x = {},
 				lualine_y = {
 					"diagnostics",
-					"location",
+					"encoding",
 					"filetype",
 				},
 				lualine_z = {
