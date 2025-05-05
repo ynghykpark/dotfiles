@@ -27,6 +27,31 @@ filextype {*.7z,*.rar}
 filextype {*.pdf,*.epub,*.djvu}
         \ zathura %f &,
 
+" Directory
+fileviewer */ tree %c -L 1 -C
+
+" Archives
+fileviewer {*.zip} unzip -l %c
+fileviewer {*.tar,*.tar.gz,*.tgz,*.tar.bz2,*.tbz2,*.tar.xz,*.txz} tar -tvf %c
+fileviewer {*.7z,*.rar} 7z l %c
+
+" Images
+fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm}
+        \ identify -verbose %f
+
+" PDFs
+fileviewer {*.pdf}
+        \ pdfinfo %c | grep -E '(Title|Author|Subject|Keywords|Created|Creator|Producer|Pages|Page size|File size)'
+
+" Video and audio files
+fileviewer {*.mp3,*.flac,*.wav,*.m4a,*.mp4,*.avi,*.mkv,*.webm}
+        \ mediainfo %c ||
+        \ file -b %c
+
+" Text files
+fileviewer *
+        \ batcat --color=always --style=plain --theme="Nord" %c
+
 nnoremap <C-e> :!open %d &<CR>
 nnoremap <C-t> :tabnew %d<CR>
 
