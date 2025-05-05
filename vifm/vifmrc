@@ -1,3 +1,4 @@
+view
 set vicmd='NVIM_LIGHTWEIGHT=1 nvim'
 set trash
 set syscalls
