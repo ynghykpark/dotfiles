@@ -75,7 +75,8 @@ install_user_python() {
         setuptools \
         wheel \
         numpy \
-        yt-dlp
+        yt-dlp \
+        awscli
 }
 
 install_btop() {
