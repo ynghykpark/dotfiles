@@ -52,6 +52,19 @@ keymap("n", "<leader>h", ":setlocal hlsearch!<CR>", get_opts("Toggle [h]ighlight
 keymap("n", "<leader>q", vim.diagnostic.setloclist, get_opts("Add [q]uickfix list for diagnostics"))
 keymap("t", "<Esc>", "<C-\\><C-n>", get_opts("Exit terminal mode"))
 
+keymap("n", "<leader>gc", function()
+	vim.cmd("Git commit")
+	-- Use a short delay to ensure Git commit UI is fully loaded
+	vim.defer_fn(function()
+		-- vim.cmd("CopilotChat")
+		--       local window = require("CopilotChat").chat
+		--       window:set_prompt("/Commit")
+		--       window:finish()
+        local chat = require("CopilotChat")
+        chat.ask("/Commit")
+	end, 100)
+end, get_opts("[G]it [C]ommit with [C]opilot"))
+
 -- open terminal at the bottom or switch to existing
 keymap("n", "<leader>ot", function()
 	local term_buf = nil
