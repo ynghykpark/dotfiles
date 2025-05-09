@@ -10,19 +10,8 @@ set incsearch
 filextype {*.3g2,*.3gp,*.avi,*.flv,*.m2ts,*.m4v,*.mj2,*.mkv,*.mov,*.mp4,*.mpeg,*.mpg,*.ogv,*.rmvb,*.webm,*.wmv,*.y4m,*.aiff,*.ape,*.au,*.flac,*.m4a,*.mka,*.mp3,*.oga,*.ogg,*.ogm,*.opus,*.wav,*.wma,*.avif,*.bmp,*.gif,*.j2k,*.jp2,*.jpeg,*.jpg,*.jxl,*.png,*.svg,*.tga,*.tif,*.tiff,*.webp}
         \ mpv %f 2>/dev/null &,
 
-filextype {*.zip}
-        \ unzip %f,
-
-filextype {*.tar,*.tar.gz,*.tgz,*.tar.bz2,*.tbz2,*.tar.xz,*.txz}
-        \ tar -xf %f
-
-filextype {*.gz,*.bz2,*.xz}
-        \ gzip -dc %f | less,
-        \ bzip2 -dc %f | less,
-        \ xz -dc %f | less
-
-filextype {*.7z,*.rar}
-        \ 7z x %f
+filextype {*.tar.bz2,*.tar.gz,*.tar.xz,*.bz2,*.rar,*.gz,*.tar,*.tbz2,*.tgz,*.zip,*.Z,*.7z}
+        \ extract %f
 
 filextype {*.pdf,*.epub,*.djvu}
         \ zathura %f &,
