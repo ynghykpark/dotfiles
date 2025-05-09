@@ -86,7 +86,7 @@ main() {
     tmux set-option -g status-position top
     tmux set-option -g status-style "bg=default, fg=default"
     tmux set-window-option -g window-status-current-format "$(create_segment "📌 #W")"
-    tmux set-option -g window-status-format '#[fg=black] #W'
+    tmux set-option -g window-status-format '#[fg=colour240] #W'
 
     # set pane border colors
     tmux set-option -g pane-active-border-style "bg=default,fg=colour240"
