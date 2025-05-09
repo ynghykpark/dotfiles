@@ -16,30 +16,30 @@ function pull_directory {
 
     local remote_dirname
     remote_dirname=$(ssh "$remote_host" "basename \"$remote_dir\"")
-    local zip_file="${remote_dirname}.zip"
+    local tar_file="${remote_dirname}.tar.gz"
 
-    if ! ssh "$remote_host" "cd \$(dirname \"$remote_dir\") && zip -r \"$zip_file\" \$(basename \"$remote_dir\")"; then
-        echo "Error: Failed to zip remote directory"
+    if ! ssh "$remote_host" "cd \$(dirname \"$remote_dir\") && tar czf \"$tar_file\" \$(basename \"$remote_dir\")"; then
+        echo "Error: Failed to create tar archive of remote directory"
         exit 1
     fi
 
-    remote_zip_path=$(dirname "$remote_dir")/"$zip_file"
-    if ! scp "$remote_host:$remote_zip_path" "$local_dir"; then
-        echo "Error: Failed to download zip file from remote server"
-        ssh "$remote_host" "rm \"$remote_zip_path\""
+    remote_tar_path=$(dirname "$remote_dir")/"$tar_file"
+    if ! scp "$remote_host:$remote_tar_path" "$local_dir"; then
+        echo "Error: Failed to download tar file from remote server"
+        ssh "$remote_host" "rm \"$remote_tar_path\""
         exit 1
     fi
 
-    ssh "$remote_host" "rm \"$remote_zip_path\""
+    ssh "$remote_host" "rm \"$remote_tar_path\""
 
-    if ! (cd "$local_dir" && unzip -o "$zip_file"); then
-        echo "Error: Failed to unzip file locally"
-        rm "$local_dir/$zip_file"
+    if ! (cd "$local_dir" && tar xzf "$tar_file"); then
+        echo "Error: Failed to extract tar archive locally"
+        rm "$local_dir/$tar_file"
         exit 1
     fi
 
     # Remove the local zip file
-    rm "$local_dir/$zip_file"
+    rm "$local_dir/$tar_file"
     echo "Download complete!"
 }
 

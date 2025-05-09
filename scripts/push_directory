@@ -15,27 +15,27 @@ function push_directory {
         exit 1
     fi
 
-    local zip_file
-    zip_file="$(basename "$local_dir").zip"
-    if ! zip -r "$zip_file" "$local_dir"; then
-        echo "Error: Failed to create zip file"
+    local tar_file
+    tar_file="$(basename "$local_dir").tar.gz"
+    if ! tar -czf "$tar_file" -C "$(dirname "$local_dir")" "$(basename "$local_dir")"; then
+        echo "Error: Failed to create tar archive"
         exit 1
     fi
 
-    if ! scp "$zip_file" "$remote_host:$remote_dir"; then
-        echo "Error: Failed to copy zip file to remote server"
-        rm "$zip_file"
+    if ! scp "$tar_file" "$remote_host:$remote_dir"; then
+        echo "Error: Failed to copy tar archive to remote server"
+        rm "$tar_file"
         exit 1
     fi
 
-    remote_zip_path="${remote_dir}/${zip_file}"
-    if ! ssh "$remote_host" "unzip -o \"$remote_zip_path\" -d \"$remote_dir\" && rm \"$remote_zip_path\""; then
-        echo "Error: Failed to unzip file on remote server"
-        rm "$zip_file"
+    remote_tar_path="${remote_dir}/${tar_file}"
+    if ! ssh "$remote_host" "tar -xzf \"$remote_tar_path\" -C \"$remote_dir\" && rm \"$remote_tar_path\""; then
+        echo "Error: Failed to extract tar archive on remote server"
+        rm "$tar_file"
         exit 1
     fi
 
-    rm "$zip_file"
+    rm "$tar_file"
 }
 
 # Check the number of arguments
