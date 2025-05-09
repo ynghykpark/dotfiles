@@ -33,3 +33,4 @@ export TERM="xterm-256color"
 export PATH="$HOME/.local/bin:$PATH"
 export COLORTERM=truecolor
 SHELL="$(which bash)" && export SHELL
+export HISTTIMEFORMAT="%F %T " # Add timestamp to history
