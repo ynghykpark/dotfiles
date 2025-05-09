@@ -13,8 +13,8 @@ eval "$(starship init bash)"
 # alias
 alias ll='ls -alh'
 alias path='echo -e ${PATH//:/\\n}'
-alias vim='NVIM_LITEWEIGHT=1 nvim'
-alias vim-full='NVIM_LITEWEIGHT=0 nvim'
+alias vim='NVIM_LIGHTWEIGHT=1 nvim'
+alias vim-full='NVIM_LIGHTWEIGHT=0 nvim'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
