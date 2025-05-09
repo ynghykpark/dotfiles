@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+function extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz) tar xzf "$1" ;;
+        *.tar.xz) tar xJf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.rar) unrar x "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar xf "$1" ;;
+        *.tbz2) tar xjf "$1" ;;
+        *.tgz) tar xzf "$1" ;;
+        *.zip) unzip "$1" ;;
+        *.Z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        *) echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+function show_help() {
+    echo "Usage: extract [options] <files>"
+    echo "Extract various archive formats with a single command"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help    Show this help message and exit"
+    echo ""
+    echo "Supported formats:"
+    echo "  .tar.bz2, .tar.gz, .tar.xz, .bz2, .rar, .gz, .tar,"
+    echo "  .tbz2, .tgz, .zip, .Z, .7z"
+    exit 0
+}
+
+# Check for help flag
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    show_help
+fi
+
+# Check if any arguments were provided
+if [ $# -eq 0 ]; then
+    echo "Error: No files specified"
+    echo "Try 'extract --help' for more information"
+    exit 1
+fi
+
+# Process all provided files
+for file in "$@"; do
+    echo "Extracting: $file"
+    extract "$file"
+done
+
+echo "Extraction complete!"
