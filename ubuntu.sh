@@ -66,8 +66,14 @@ install_user_python() {
     sudo add-apt-repository -y ppa:deadsnakes/ppa
     sudo apt update
     sudo apt install -y --no-install-recommends \
+        python3.10 \
         python3.11 \
-        python3.11-dev
+        python3.12 \
+        python3.13 \
+        python3.10-dev \
+        python3.11-dev \
+        python3.12-dev \
+        python3.13-dev
     python3.11 -m venv --without-pip "$HOME/.venv"
     curl -s https://bootstrap.pypa.io/get-pip.py | "$HOME/.venv/bin/python3"
     "$HOME/.venv/bin/pip3" install --upgrade pip
