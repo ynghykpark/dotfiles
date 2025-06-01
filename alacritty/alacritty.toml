@@ -1,0 +1,44 @@
+[window]
+decorations = "None"
+# decorations - "Buttonless"
+opacity = 0.75
+blur = true
+padding.x = 3
+padding.y = 3
+
+[font]
+normal.family = "Iosevka Nerd Font"
+normal.style = "Regular"
+bold.family = "Iosevka Nerd Font"
+bold.style = "Bold"
+italic.family = "Iosevka Nerd Font"
+italic.style = "Italic"
+bold_italic.family = "Iosevka Nerd Font"
+bold_italic.style = "Bold Italic"
+size = 13.5
+
+[colors]
+primary.background = '0x151515'
+primary.foreground = '0xd4be98'
+cursor.text = '0x1d2021'
+cursor.cursor = '0xd4be98'
+
+[colors.normal]
+black = '0x3c3836'
+red = '0xea6962'
+green = '0xa9b665'
+yellow = '0xd8a657'
+blue = '0x7daea3'
+magenta = '0xd3869b'
+cyan = '0x89b482'
+white = '0xd4be98'
+
+[colors.bright]
+black = '0x5a524c'
+red = '0xea6962'
+green = '0xa9b665'
+yellow = '0xd8a657'
+blue = '0x7daea3'
+magenta = '0xd3869b'
+cyan = '0x89b482'
+white = '0xdfbf8e'
