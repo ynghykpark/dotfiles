@@ -1,0 +1,39 @@
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+set font "IBM Plex Sans KR 10"
+set default-bg "#333333"
+set render-loading "false"
+set scroll-step 50
+
+# fullscreen
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+# dark/light mode
+map d recolor
+map [fullscreen] d recolor
+set recolor "true"
+set recolor-lightcolor "#333333" #00
+set recolor-darkcolor "#E0E0E0" #06
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
+# keymaps
+map r rotate
+map [fullscreen] r rotate
+
+map p print
+map [fullscreen] p print
