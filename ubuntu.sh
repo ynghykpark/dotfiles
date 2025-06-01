@@ -42,12 +42,7 @@ install_basic_apps() {
         g++-11 \
         bzip2 \
         xz-utils \
-        p7zip-full \
-        tree \
-        bat \
-        imagemagick \
-        poppler-utils \
-        mediainfo
+        p7zip-full
 }
 
 install_neovim() {
